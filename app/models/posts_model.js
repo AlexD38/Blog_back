@@ -24,6 +24,18 @@ const posts_model = {
 			console.log(error);
 		}
 	},
+	async addPost(title, slug, body) {
+		try {
+			const sqlQuery = {
+				text: `INSERT INTO posts (title, slug, body) VALUES($1, $2, $3)`,
+				values: [title, slug, body],
+			};
+			const response = await client.query(sqlQuery);
+			return response.rows;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default posts_model;

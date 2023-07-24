@@ -11,5 +11,6 @@ router.get("/posts", posts_controller.AllPosts);
 router.get("/posts/:id(\\d+)", posts_controller.OnePost);
 router.get("/tags", tags_controller.Alltags);
 router.post("/login", AuthMiddleware.verifyUser);
+router.post("/posts", posts_controller.AddPost);
 
 export default router;

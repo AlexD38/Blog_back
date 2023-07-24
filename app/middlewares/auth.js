@@ -8,12 +8,12 @@ const AuthMiddleware = {
 		try {
 			const mailFound = await user_model.getUserMail(mail);
 			if (!mailFound) {
-				res.json({ error: "...Mauvais identifiant" });
+				res.status(405).json({ error: "...Mauvais identifiant" });
 				return;
 			}
 			const pwdFound = await user_model.getUserPwd(mailFound.password);
 			if (!pwdFound) {
-				res.json({ error: "...Mauvais identifiant" });
+				res.status(405).json({ error: "...Mauvais identifiant" });
 				return;
 			}
 			res.status(200).json({ isAdmin: pwdFound[0].is_admin });

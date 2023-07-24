@@ -26,6 +26,20 @@ const posts_controller = {
 			console.log(error);
 		}
 	},
+	async AddPost(req, res) {
+		try {
+			const { title, slug, body } = req.body;
+			console.log(title, slug, body);
+			let newPost = await posts_model.addPost(title, slug, body);
+			if (newPost) {
+				res.status(200).json({ success: "Post has been added" });
+			} else {
+				console.log(error);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default posts_controller;
