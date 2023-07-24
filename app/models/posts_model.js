@@ -7,7 +7,19 @@ const posts_model = {
 				text: `SELECT * FROM posts;`,
 			};
 			const response = await client.query(sqlQuery);
-			return response.rows[0];
+			return response.rows;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	async getOnePost(postId) {
+		try {
+			const sqlQuery = {
+				text: `SELECT * FROM posts WHERE id=$1;`,
+				values: [postId],
+			};
+			const response = await client.query(sqlQuery);
+			return response.rows;
 		} catch (error) {
 			console.log(error);
 		}
