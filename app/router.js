@@ -16,6 +16,7 @@ router.post("/login", AuthMiddleware.verifyUser);
 router.post("/tags", tags_controller.AddTags);
 router.post("/posts", posts_controller.AddPost);
 router.delete("/posts/:id(\\d+)", delete_controller.deleteRecord);
+router.delete("/tags/:id(\\d+)", delete_controller.deleteRecord);
 router.patch("/posts/:id(\\d+)", posts_controller.EditPost);
 
 export default router;
