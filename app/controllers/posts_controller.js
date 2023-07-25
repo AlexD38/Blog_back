@@ -40,6 +40,25 @@ const posts_controller = {
 			console.log(error);
 		}
 	},
+	async EditPost(req, res) {
+		try {
+			const { title, slug, body } = req.body;
+			const id = req.params.id;
+
+			console.log(title, slug, body);
+			let correctedPost = await posts_model.editPost(
+				title,
+				slug,
+				body,
+				id
+			);
+			if (correctedPost) {
+				res.status(200).json({ success: "Post has been updated" });
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default posts_controller;

@@ -10,9 +10,12 @@ const router = express.Router();
 //routes list here
 router.get("/posts", posts_controller.AllPosts);
 router.get("/posts/:id(\\d+)", posts_controller.OnePost);
+router.get("/posts/:id(\\d+)/tags", tags_controller.AlltagsFromOnePost);
 router.get("/tags", tags_controller.Alltags);
 router.post("/login", AuthMiddleware.verifyUser);
+router.post("/tags", tags_controller.AddTags);
 router.post("/posts", posts_controller.AddPost);
 router.delete("/posts/:id(\\d+)", delete_controller.deleteRecord);
+router.patch("/posts/:id(\\d+)", posts_controller.EditPost);
 
 export default router;
