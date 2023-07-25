@@ -4,7 +4,6 @@ const AuthMiddleware = {
 	async verifyUser(req, res, next) {
 		// extraction de l'email et pwd depuis le body de la requete
 		const { mail, pwd } = req.body;
-		console.log(mail, pwd);
 		try {
 			const mailFound = await user_model.getUserMail(mail);
 			if (!mailFound) {
