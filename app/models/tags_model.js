@@ -15,7 +15,7 @@ const tags_model = {
 	async getAlltagsFromOnePost(postId) {
 		try {
 			const sqlQuery = {
-				text: `SELECT name
+				text: `SELECT tags.id, name
 				FROM tags
 					JOIN posts_has_tags ON tags.id = posts_has_tags.tags_id
 					JOIN posts ON posts.id = posts_has_tags.posts_id
@@ -45,6 +45,21 @@ const tags_model = {
 			const sqlQuery = {
 				text: `INSERT INTO posts_has_tags (posts_id, tags_id) VALUES ($1, $2);`,
 				values: [postId, tagId],
+			};
+			const response = await client.query(sqlQuery);
+			return response.rows;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	async DetachTagFromPost(tagId, postId) {
+		try {
+			const sqlQuery = {
+				text: `DELETE FROM posts_has_tags
+				WHERE tags_id = $1 AND posts_id = $2;
+				;
+				`,
+				values: [tagId, postId],
 			};
 			const response = await client.query(sqlQuery);
 			return response.rows;

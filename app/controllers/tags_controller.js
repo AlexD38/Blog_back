@@ -69,6 +69,21 @@ const tags_controller = {
 			console.log(error);
 		}
 	},
+	async detachTagsToPost(req, res) {
+		try {
+			const { tagId, postId } = req.params;
+			let tagToDetach = await tags_model.DetachTagFromPost(tagId, postId);
+			if (tagToDetach) {
+				res.status(200).json({
+					success: "Tag has been detached",
+				});
+			} else {
+				console.log(error);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default tags_controller;
