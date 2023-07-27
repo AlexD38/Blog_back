@@ -44,10 +44,6 @@ const tags_controller = {
 			const { tagName } = req.body.data;
 			let tagReadyToBeAttached = await tags_model.AddTag(tagName);
 			if (!tagReadyToBeAttached) {
-				// console.log(
-				// 	`well done, tag ${tagName} has been addded ! Now, let's attach it to its post...`
-				// );
-				// // console.log(tagReadyToBeAttached);
 				res.status(500).json(
 					"something went wong....it's not you...it's me."
 				);
@@ -62,9 +58,26 @@ const tags_controller = {
 					success: "Tag has been attached",
 					AttachTag,
 				});
+				return;
 			} else {
 				console.log(error);
 			}
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	async AttachTagsToPostFromAnExistingTag(req, res) {
+		try {
+			const { tagId } = req.body.data;
+			const postId = req.params.id;
+			let tagReadyToBeAttached = await tags_model.attachTagToPost(
+				tagId,
+				postId
+			);
+			if (!tagReadyToBeAttached) {
+				res.status(500).json("something went wong....");
+			}
+			res.status(200).json("Tag has been attached");
 		} catch (error) {
 			console.log(error);
 		}
