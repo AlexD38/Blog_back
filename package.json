@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "resetdb": "bash scripts/deploy.sh",
+    "updatedb": "bash scripts/update.sh",
     "dev": "nodemon index.js"
   },
   "author": "",
