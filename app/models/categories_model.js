@@ -7,7 +7,7 @@ const category_model = {
                 text: `SELECT * FROM categories;`,
             };
             const response = await client.query(sqlQuery);
-            return response.rows[0];
+            return response.rows;
         } catch (error) {
             console.log(error);
         }

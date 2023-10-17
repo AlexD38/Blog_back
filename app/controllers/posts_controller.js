@@ -5,6 +5,7 @@ const posts_controller = {
         try {
             let posts = await posts_model.getAllPosts();
             if (posts) {
+                // console.log(posts);
                 res.json(posts);
             } else {
                 console.log(error);

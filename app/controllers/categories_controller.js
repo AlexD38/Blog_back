@@ -6,8 +6,6 @@ const categories_controller = {
             let cats = await category_model.getAllCategories();
             if (cats) {
                 res.json(cats);
-            } else {
-                // console.log(error);
             }
         } catch (error) {
             console.log(error);
