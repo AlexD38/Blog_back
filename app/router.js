@@ -15,6 +15,7 @@ router.get("/posts/:id(\\d+)", posts_controller.OnePost);
 router.get("/posts/:id(\\d+)/tags", tags_controller.AlltagsFromOnePost);
 router.get("/tags", tags_controller.Alltags);
 router.get("/tags/:id(\\d+)/posts", posts_controller.AllPostsFromTheirTags);
+router.get("/categories/:id(\\d+)/posts", posts_controller.AllPostsFromTheirCats);
 router.post("/login", AuthMiddleware.verifyUser);
 router.post("/tags", tags_controller.AddTags);
 router.post("/posts/:id(\\d+)/tags", tags_controller.AttachTagsToPost);

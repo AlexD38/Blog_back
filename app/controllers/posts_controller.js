@@ -14,6 +14,20 @@ const posts_controller = {
             console.log(error);
         }
     },
+    async AllPostsFromTheirCats(req, res) {
+        try {
+            const catId = req.params.id;
+            // console.log(catId);
+            let posts = await posts_model.getAllPostsFromTheirCategory(catId);
+            if (posts) {
+                res.json(posts);
+            } else {
+                console.log(error);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
     async AllPostsFromTheirTags(req, res) {
         try {
             const tagId = req.params.tagId;
