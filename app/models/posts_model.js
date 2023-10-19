@@ -48,11 +48,11 @@ const posts_model = {
             console.log(error);
         }
     },
-    async addPost(title, slug, body) {
+    async addPost(title, slug, body, categoryId) {
         try {
             const sqlQuery = {
-                text: `INSERT INTO posts (title, slug, body) VALUES($1, $2, $3)`,
-                values: [title, slug, body],
+                text: `INSERT INTO posts (title, slug, body, category_id) VALUES($1, $2, $3, $4)`,
+                values: [title, slug, body, categoryId],
             };
             const response = await client.query(sqlQuery);
             return response.rows;
