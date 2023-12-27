@@ -35,4 +35,6 @@ CREATE TABLE
         "tags_id" INTEGER REFERENCES "tags"("id") ON DELETE CASCADE
     );
 
+ALTER TABLE users ALTER COLUMN user_name SET NOT NULL;
+
 COMMIT;
