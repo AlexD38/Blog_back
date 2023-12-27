@@ -4,7 +4,7 @@ const category_model = {
     async getAllCategories() {
         try {
             const sqlQuery = {
-                text: `SELECT * FROM categories;`,
+                text: `SELECT COUNT(posts.id) as posts_count, categories.name as category_name FROM posts JOIN categories ON category_id = categories.id group BY categories.name`,
             };
             const response = await client.query(sqlQuery);
             return response.rows;
