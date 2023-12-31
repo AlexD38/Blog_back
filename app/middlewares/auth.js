@@ -1,6 +1,6 @@
 import user_model from "../models/user_model.js";
 import jwt from "jsonwebtoken";
-import env from "dotenv";
+
 const AuthMiddleware = {
     async verifyUser(req, res, next) {
         const { mail } = req.body;
@@ -15,8 +15,8 @@ const AuthMiddleware = {
                 res.status(405).json({ error: "...Mauvais identifiant" });
                 return;
             }
-            // console.log(pwdFound[0]);
             res.locals.user = { isAdmin: pwdFound[0].is_admin, userName: pwdFound[0].user_name };
+            console.log(res.locals.user);
             next();
         } catch (error) {
             console.log(error);
@@ -32,6 +32,7 @@ const AuthMiddleware = {
                 },
                 process.env.SECRET
             );
+            console.log(res.locals.user.userName);
             res.status(200).json({ token, userName: res.locals.user.userName });
             // console.log("token : ", token);
             // const decodedToken = jwt.verify(token, "secret");
