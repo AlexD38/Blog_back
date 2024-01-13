@@ -64,7 +64,7 @@ const posts_model = {
     async editPost(title, slug, body, id) {
         try {
             const sqlQuery = {
-                text: `UPDATE posts SET title = $1, slug = $2, body = $3 WHERE id=$4;`,
+                text: `UPDATE posts SET title = $1, slug = $2, body = $3, updated_at = NOW() WHERE id=$4;`,
                 values: [title, slug, body, id],
             };
             const response = await client.query(sqlQuery);
